@@ -1,33 +1,44 @@
 {
-  "id": "pickyadventurer",
-  "title": "Picky Adventurer",
-  "version": "0.1",
-  "description": "Picky Adventurer lets you pick what parts of an adventure to import.",
-  "compatibility": {
-    "minimum": "13",
-    "verified": "13"
-  },
+  "id": "niks-picky-adventurer",
+  "title": "Nik's Picky Adventurer",
+  "description": "Pick which documents of an adventure to create or update, instead of importing the whole adventure.",
   "authors": [
     {
       "name": "kaelad",
+      "url": "https://github.com/kaelad02",
       "discord": "kaelad"
+    },
+    {
+      "name": "Nik",
+      "discord": "nikolai.sw"
     }
   ],
+  "url": "https://github.com/nschoenwald/niks-picky-adventurer",
+  "bugs": "https://github.com/nschoenwald/niks-picky-adventurer/issues",
+  "changelog": "https://github.com/nschoenwald/niks-picky-adventurer/blob/main/CHANGELOG.md",
+  "version": "14.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
   "esmodules": [
-    "src/pickyadventurer.js"
+    "src/niks-picky-adventurer.js"
   ],
   "styles": [
-    "css/pickyadventurer.css"
+    "css/niks-picky-adventurer.css"
   ],
   "languages": [
     {
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "lang/de.json"
     }
   ],
-  "url": "replaced by workflow",
-  "manifest": "replaced by workflow",
-  "download": "replaced by workflow",
-  "readme": "replaced by workflow"
+  "manifest": "https://github.com/nschoenwald/niks-picky-adventurer/releases/latest/download/module.json",
+  "download": "https://github.com/nschoenwald/niks-picky-adventurer/releases/latest/download/module.zip"
 }

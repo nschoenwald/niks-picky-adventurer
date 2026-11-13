@@ -1,11 +1,11 @@
-.pickyadventurer .tab .document-type-controls {
+.niks-picky-adventurer .tab .document-type-controls {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-end;
   align-items: center;
 }
-.pickyadventurer .tab .document-type-controls button.icon {
+.niks-picky-adventurer .tab .document-type-controls button.icon {
   flex: 0 0 24px;
   height: 24px;
   padding: 0;

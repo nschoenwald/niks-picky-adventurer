@@ -1,0 +1,15 @@
+{
+  "PICKER": {
+    "label": "Auswahl",
+    "TABS": {
+      "create": "Erstellen",
+      "createEmpty": "Es gibt keine Dokumente zum Erstellen.",
+      "update": "Aktualisieren",
+      "updateEmpty": "Es gibt keine Dokumente zum Aktualisieren."
+    },
+    "ACTIONS": {
+      "addAll": "Alle hinzufügen",
+      "removeAll": "Alle entfernen"
+    }
+  }
+}

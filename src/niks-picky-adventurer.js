@@ -1,10 +1,12 @@
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
+const MODULE_ID = "niks-picky-adventurer";
+
 Hooks.on("preImportAdventure", (adventure, importOptions, toCreate, toUpdate) => {
-  if (importOptions.pickyadventurer) {
+  if (importOptions.niksPickyAdventurer) {
     // found the Picker options, filter the toCreate and toUpdate objects
-    _filterImport(importOptions.pickyadventurer.toCreateIds, toCreate);
-    _filterImport(importOptions.pickyadventurer.toUpdateIds, toUpdate);
+    _filterImport(importOptions.niksPickyAdventurer.toCreateIds, toCreate);
+    _filterImport(importOptions.niksPickyAdventurer.toUpdateIds, toUpdate);
   } else {
     // no Picker options, show it and stop the import
     new Picker({ adventure, importOptions, toCreate, toUpdate }).render(true);
@@ -31,7 +33,7 @@ class Picker extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   static DEFAULT_OPTIONS = {
-    classes: ["pickyadventurer"],
+    classes: [MODULE_ID],
     tag: "form",
     window: {
       contentClasses: ["standard-form"],
@@ -55,11 +57,11 @@ class Picker extends HandlebarsApplicationMixin(ApplicationV2) {
       template: "templates/generic/tab-navigation.hbs",
     },
     create: {
-      template: "modules/pickyadventurer/templates/picker-part-list.hbs",
+      template: `modules/${MODULE_ID}/templates/picker-part-list.hbs`,
       scrollable: [""],
     },
     update: {
-      template: "modules/pickyadventurer/templates/picker-part-list.hbs",
+      template: `modules/${MODULE_ID}/templates/picker-part-list.hbs`,
       scrollable: [""],
     },
     footer: {
@@ -222,8 +224,21 @@ class Picker extends HandlebarsApplicationMixin(ApplicationV2) {
     const toUpdateIds = Picker.#prepareSubmitList("update", formData);
 
     // trigger Adventure import again
-    this.importOptions.pickyadventurer = { toCreateIds, toUpdateIds };
+    Picker.#restoreConfiguredOptions(this.importOptions);
+    this.importOptions.niksPickyAdventurer = { toCreateIds, toUpdateIds };
     this.adventure.import(this.importOptions);
+  }
+
+  /**
+   * Undo changes the adventure sheet made to the options when the first import was configured, because the
+   * second import configures them again.
+   * The dnd5e importer turns the chosen import actions ({id: true}) into a list of ids. Converted twice, the list
+   * becomes its indices ("0", "1", …), so no action matches and the actions the GM ticked are skipped.
+   */
+  static #restoreConfiguredOptions(importOptions) {
+    if (Array.isArray(importOptions.actions)) {
+      importOptions.actions = Object.fromEntries(importOptions.actions.map((id) => [id, true]));
+    }
   }
 
   static #prepareSubmitList(action, formData) {
